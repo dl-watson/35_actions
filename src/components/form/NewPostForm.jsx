@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import useDispatch from "../../providers/PostProvider";
 import styles from "./styles/NewPostForm.css";
 
 const NewPostForm = () => {
   // refactor into a separate hook after wiring up the reducer
-  // set up useDispatch()
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
@@ -16,7 +17,7 @@ const NewPostForm = () => {
     setTitle(elements.title.value);
     setBody(elements.body.value);
 
-    // dispatch (createPost({title, body}))
+    dispatch(createPost({ title, body }));
   };
 
   return (

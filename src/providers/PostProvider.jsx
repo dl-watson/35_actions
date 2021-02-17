@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
 import { initialState, postReducer } from "../reducers/postReducer";
 
@@ -12,6 +12,11 @@ export const PostProvider = ({ children }) => {
       {children}
     </PostContext.Provider>
   );
+};
+
+export const useDispatch = () => {
+  const { dispatch } = useContext(PostContext);
+  return dispatch;
 };
 
 PostProvider.propTypes = {
