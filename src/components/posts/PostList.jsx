@@ -1,5 +1,4 @@
 import React from "react";
-import uuid from "react-uuid";
 import { useSelector } from "../../providers/PostProvider";
 import { getPosts } from "../../selectors/postSelectors";
 import Post from "./Post";
@@ -9,7 +8,7 @@ const PostList = () => {
 
   const list = posts.map((post) => {
     return (
-      <li key={uuid()}>
+      <li key={post.id}>
         <Post {...post} />
       </li>
     );

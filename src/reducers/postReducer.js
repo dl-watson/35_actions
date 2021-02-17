@@ -1,4 +1,4 @@
-import { CREATE_POST } from "../actions/postActions";
+import { CREATE_POST, DELETE_POST } from "../actions/postActions";
 
 export const initialState = {
   posts: [],
@@ -11,6 +11,8 @@ export const postReducer = (state, action) => {
         ...state,
         posts: [...state.posts, action.payload],
       };
+    case DELETE_POST:
+      return state.posts.filter((post) => post.id !== action.payload);
     default: {
       return state;
     }
