@@ -8,6 +8,7 @@ const NewPostForm = () => {
       <form>
         <input name="title" placeholder="Title..." />
         <textarea name="body" placeholder="Body..." />
+        <button>Submit</button>
       </form>
     </section>
   );
