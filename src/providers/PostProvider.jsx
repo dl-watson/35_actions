@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useReducer } from "react";
 import PropTypes from "prop-types";
-import { initialState, postReducer } from "../reducers/postReducer";
+import { postReducer, initialState } from "../reducers/postReducer";
 
 const PostContext = createContext(null);
 
@@ -12,6 +12,12 @@ export const PostProvider = ({ children }) => {
       {children}
     </PostContext.Provider>
   );
+};
+
+export const useSelector = (selector) => {
+  const { state } = useContext(PostContext);
+
+  return selector(state);
 };
 
 export const useDispatch = () => {
