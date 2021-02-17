@@ -1,7 +1,12 @@
 import React from "react";
+import NewPostForm from "../form/NewPostForm";
 
 const App = () => {
-  return <div></div>;
+  return (
+    <>
+      <NewPostForm />
+    </>
+  );
 };
 
 export default App;
