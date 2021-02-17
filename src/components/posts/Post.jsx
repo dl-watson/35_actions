@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "../../providers/PostProvider";
 import { deletePost } from "../../actions/postActions";
+import styles from "./styles/Post.css";
+import deleteIcon from "/public/img/delete.png";
 
 const Post = ({ id, title, body }) => {
   const dispatch = useDispatch();
@@ -11,9 +13,13 @@ const Post = ({ id, title, body }) => {
   };
 
   return (
-    <>
-      <div onClick={handleClick}>{title}</div>
-    </>
+    <div className={styles.Post}>
+      <img src={deleteIcon} onClick={handleClick} />
+      <section>
+        <h2>{title}</h2>
+        <p>{body}</p>
+      </section>
+    </div>
   );
 };
 
