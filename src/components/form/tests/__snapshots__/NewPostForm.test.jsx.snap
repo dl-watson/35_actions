@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NewPostForm component renders NewPostForm 1`] = `
+<DocumentFragment>
+  <section
+    class="NewPostForm"
+  >
+    <h2>
+      Create Post
+    </h2>
+    <form>
+      <input
+        name="title"
+        placeholder="Title..."
+        value=""
+      />
+      <textarea
+        name="body"
+        placeholder="Body..."
+      />
+      <button>
+        Submit
+      </button>
+    </form>
+  </section>
+</DocumentFragment>
+`;
