@@ -4,14 +4,15 @@ exports[`Post component renders Post 1`] = `
 <DocumentFragment>
   <div
     class="Post"
-    data-testid="post-container"
   >
     <img
       data-testid="delete-icon"
       src="/path/image"
     />
     <section>
-      <h2 />
+      <h2
+        data-testid="title"
+      />
       <p />
     </section>
   </div>

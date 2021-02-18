@@ -2,6 +2,8 @@
 
 exports[`PostList component renders PostList 1`] = `
 <DocumentFragment>
-  <ul />
+  <ul
+    data-testid="post-container"
+  />
 </DocumentFragment>
 `;
