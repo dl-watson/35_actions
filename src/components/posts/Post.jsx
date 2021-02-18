@@ -14,9 +14,9 @@ const Post = ({ id, title, body }) => {
 
   return (
     <div className={styles.Post}>
-      <img src={deleteIcon} onClick={handleClick} />
+      <img src={deleteIcon} onClick={handleClick} data-testid="delete-icon" />
       <section>
-        <h2>{title}</h2>
+        <h2 data-testid="title">{title}</h2>
         <p>{body}</p>
       </section>
     </div>

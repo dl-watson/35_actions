@@ -13,7 +13,7 @@ const PostList = () => {
       </li>
     );
   });
-  return <ul>{list}</ul>;
+  return <ul data-testid="post-container">{list}</ul>;
 };
 
 export default PostList;

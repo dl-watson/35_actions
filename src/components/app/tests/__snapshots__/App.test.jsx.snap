@@ -23,6 +23,8 @@ exports[`App component renders App 1`] = `
       </button>
     </form>
   </section>
-  <ul />
+  <ul
+    data-testid="post-container"
+  />
 </DocumentFragment>
 `;
