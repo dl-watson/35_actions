@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deletePost, updatePost } from "../../actions/postActions";
+import { deletePost } from "../../actions/postActions";
 import styles from "./styles/Post.css";
 import deleteIcon from "/public/img/delete.png";
 import { useDispatch, useSelector } from "react-redux";
-import { createComment } from "../../actions/commentActions";
 import { getComments } from "../../selectors/commentSelectors";
 import uuid from "react-uuid";
 import CommentForm from "../comments/CommentForm";
+import CommentList from "../comments/CommentList";
 
 const Post = ({ id, title, body, postcomments }) => {
   const dispatch = useDispatch();
