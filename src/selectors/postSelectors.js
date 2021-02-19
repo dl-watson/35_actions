@@ -1,5 +1,1 @@
-export const getPosts = (state) => {
-  console.log(state);
-
-  return state.posts;
-};
+export const getPosts = (state) => state.posts;
