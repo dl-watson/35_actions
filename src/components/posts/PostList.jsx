@@ -4,7 +4,7 @@ import { getPosts } from "../../selectors/postSelectors";
 import Post from "./Post";
 
 const PostList = () => {
-  const posts = useSelector(getPosts);
+  const { posts } = useSelector(getPosts);
 
   const list = posts.map((post) => {
     return (

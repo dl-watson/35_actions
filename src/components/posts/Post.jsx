@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Post = ({ id, title, body }) => {
   const dispatch = useDispatch();
-  const comments = useSelector(getComments);
+  const { comments } = useSelector(getComments);
   console.log(comments);
 
   const handleClick = () => {
