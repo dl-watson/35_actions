@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { createComment } from "../../actions/commentActions";
 import { updatePost } from "../../actions/postActions";
 
-const CommentForm = ({ id }) => {
+const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
 
   const handleComment = (e) => {
@@ -18,14 +18,14 @@ const CommentForm = ({ id }) => {
   };
   return (
     <form onSubmit={handleComment}>
-      <input name="comment" id={id} />
+      <input name="comment" id={postId} />
       <button>Comment</button>
     </form>
   );
 };
 
 CommentForm.propTypes = {
-  id: PropTypes.number.isRequired,
+  postId: PropTypes.number.isRequired,
 };
 
 export default CommentForm;
