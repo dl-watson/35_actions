@@ -1,30 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { deletePost } from "../../actions/postActions";
+import { deletePost, updatePost } from "../../actions/postActions";
 import styles from "./styles/Post.css";
 import deleteIcon from "/public/img/delete.png";
-import { getComments } from "../../selectors/commentSelectors";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../actions/commentActions";
+import {
+  getComments,
+  getCommentsByPostId,
+} from "../../selectors/commentSelectors";
 
-const Post = ({ id, title, body }) => {
+const Post = ({ id, title, body, postcomments }) => {
   const dispatch = useDispatch();
   const { comments } = useSelector(getComments);
-  console.log(comments);
+  console.log("comments in post", comments);
 
   const handleClick = () => {
     dispatch(deletePost(id));
+    // dispatch(deleteComment(id))
   };
 
-  const handleSubmit = (e) => {
+  const handleComment = (e) => {
     e.preventDefault();
-
     const { comment } = e.target.elements;
 
     dispatch(
-      createComment({ [comment.id]: { id: Date.now(), text: comment.value } })
+      createComment({ [comment.id]: { id: Date.now(), text: comment.value } }),
+      updatePost(comment.id, comment.value)
     );
   };
+
+  const commentList = comments.map((comment) => {
+    return <li key={comment.id}>{comment.text}</li>;
+  });
 
   return (
     <div className={styles.Post}>
@@ -32,7 +40,8 @@ const Post = ({ id, title, body }) => {
       <section>
         <h2 data-testid="title">{title}</h2>
         <p>{body}</p>
-        <form onSubmit={handleSubmit}>
+        <ul>{commentList}</ul>
+        <form onSubmit={handleComment}>
           <input name="comment" id={id} />
           <button>Comment</button>
         </form>
@@ -45,6 +54,7 @@ Post.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   body: PropTypes.string.isRequired,
+  postcomments: PropTypes.array.isRequired,
 };
 
 export default Post;

@@ -4,7 +4,6 @@ import { createPost } from "../../actions/postActions";
 import styles from "./styles/NewPostForm.css";
 
 const NewPostForm = () => {
-  // refactor into a separate hook after wiring up the reducer
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState("");
@@ -13,7 +12,7 @@ const NewPostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost({ id: Date.now(), title, body }));
+    dispatch(createPost({ id: Date.now(), title, body, postcomments: [] }));
   };
 
   return (
