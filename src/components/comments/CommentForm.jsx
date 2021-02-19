@@ -7,7 +7,6 @@ const CommentForm = ({ postId }) => {
   const dispatch = useDispatch();
 
   const handleComment = (e) => {
-    console.log(e.target.elements.comment);
     e.preventDefault();
     const { comment } = e.target.elements;
 

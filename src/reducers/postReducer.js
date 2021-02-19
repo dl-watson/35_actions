@@ -17,17 +17,6 @@ export const postReducer = (state = initialState, action) => {
         ...state,
         posts: state.posts.filter((post) => post.id !== action.payload),
       };
-    // case UPDATE_POST:
-    //   return {
-    //     ...state,
-    //     posts: state.posts.map((post) => {
-    //       console.log("reducer", action.payload.id);
-
-    //       if (post.id === action.payload.id) {
-    //         post.postcomment = action.payload.text;
-    //       }
-    //     }),
-    //   };
     default: {
       return state;
     }
