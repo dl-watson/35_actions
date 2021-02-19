@@ -6,18 +6,19 @@ import deleteIcon from "/public/img/delete.png";
 import { useDispatch } from "react-redux";
 import CommentForm from "../comments/CommentForm";
 import CommentList from "../comments/CommentList";
+import { deleteComment } from "../../actions/commentActions";
 
 const Post = ({ id, title, body, postcomments }) => {
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const handleDelete = () => {
     dispatch(deletePost(id));
-    // dispatch(deleteComment(id))
+    dispatch(deleteComment(id));
   };
 
   return (
     <div className={styles.Post}>
-      <img src={deleteIcon} onClick={handleClick} data-testid="delete-icon" />
+      <img src={deleteIcon} onClick={handleDelete} data-testid="delete-icon" />
       <section>
         <h2 data-testid="title">{title}</h2>
         <p>{body}</p>
