@@ -4,16 +4,21 @@ import { getComments } from "../../selectors/commentSelectors";
 import { useSelector } from "react-redux";
 import uuid from "react-uuid";
 
-const CommentList = () => {
+const CommentList = ({ postId }) => {
   const { comments } = useSelector(getComments);
-  console.log("comments in post", comments);
 
   const commentList = comments.map((comment) => {
-    return <li key={uuid()}>{comment.text}</li>;
+    return (
+      <li key={uuid()}>
+        <div>{comment[postId].text}</div>
+      </li>
+    );
   });
   return <>{commentList}</>;
 };
 
-CommentList.propTypes = {};
+CommentList.propTypes = {
+  postId: PropTypes.number.isRequired,
+};
 
 export default CommentList;

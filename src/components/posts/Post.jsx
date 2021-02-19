@@ -22,7 +22,7 @@ const Post = ({ id, title, body, postcomments }) => {
         <h2 data-testid="title">{title}</h2>
         <p>{body}</p>
         <ul>
-          <CommentList />
+          <CommentList postId={id} />
         </ul>
         <CommentForm postId={id} />
       </section>
