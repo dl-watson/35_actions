@@ -5,6 +5,7 @@ import Post from "./Post";
 
 const PostList = () => {
   const posts = useSelector(getPosts);
+  console.log(posts);
 
   const list = posts.map((post) => {
     return (
