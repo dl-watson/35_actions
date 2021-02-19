@@ -5,10 +5,9 @@ import styles from "./styles/Post.css";
 import deleteIcon from "/public/img/delete.png";
 import { useDispatch, useSelector } from "react-redux";
 import { createComment } from "../../actions/commentActions";
-import {
-  getComments,
-  getCommentsByPostId,
-} from "../../selectors/commentSelectors";
+import { getComments } from "../../selectors/commentSelectors";
+import uuid from "react-uuid";
+import CommentForm from "../comments/CommentForm";
 
 const Post = ({ id, title, body, postcomments }) => {
   const dispatch = useDispatch();
@@ -20,18 +19,8 @@ const Post = ({ id, title, body, postcomments }) => {
     // dispatch(deleteComment(id))
   };
 
-  const handleComment = (e) => {
-    e.preventDefault();
-    const { comment } = e.target.elements;
-
-    dispatch(
-      createComment({ [comment.id]: { id: Date.now(), text: comment.value } }),
-      updatePost(comment.id, comment.value)
-    );
-  };
-
   const commentList = comments.map((comment) => {
-    return <li key={comment.id}>{comment.text}</li>;
+    return <li key={uuid()}>{comment.text}</li>;
   });
 
   return (
@@ -41,10 +30,8 @@ const Post = ({ id, title, body, postcomments }) => {
         <h2 data-testid="title">{title}</h2>
         <p>{body}</p>
         <ul>{commentList}</ul>
-        <form onSubmit={handleComment}>
-          <input name="comment" id={id} />
-          <button>Comment</button>
-        </form>
+        <CommentForm postId={id} />
+        <CommentList />
       </section>
     </div>
   );

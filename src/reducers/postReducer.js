@@ -22,9 +22,9 @@ export const postReducer = (state = initialState, action) => {
         ...state,
         posts: state.posts.map((post) => {
           console.log("reducer", action.payload.id);
+
           if (post.id === action.payload.id) {
             post.postcomment = action.payload.text;
-            console.log("works!");
           }
         }),
       };

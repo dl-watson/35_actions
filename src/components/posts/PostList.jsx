@@ -1,14 +1,11 @@
 import React from "react";
 import { useSelector } from "react-redux";
-// import { getComments } from "../../selectors/commentSelectors";
 import { getPosts } from "../../selectors/postSelectors";
 import Post from "./Post";
 
 const PostList = () => {
   const { posts } = useSelector(getPosts);
-  console.log(posts);
-  // const { comments } = useSelector(getComments);
-  // console.log(comments);
+  console.log("posts in post list", posts);
 
   const list = posts.map((post) => {
     return (
