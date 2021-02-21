@@ -1,4 +1,8 @@
-import { CREATE_COMMENT, DELETE_COMMENT } from "../actions/commentActions";
+import {
+  CREATE_COMMENT,
+  DELETE_COMMENT,
+  DELETE_POST_COMMENTS,
+} from "../actions/commentActions";
 
 export const initialState = {};
 
@@ -16,15 +20,15 @@ export const commentReducer = (state = initialState, action) => {
       return {
         ...state,
         [action.payload.postIndex]: [
-          ...state[action.payload.postIndex].slice(
-            0,
-            action.payload.commentIndex
-          ),
-
-          ...state[action.payload.postIndex].slice(
-            action.payload.commentIndex + 1
+          ...state[action.payload.postIndex].filter(
+            (comment, index) => index !== action.payload.commentIndex
           ),
         ],
+      };
+    case DELETE_POST_COMMENTS:
+      return {
+        ...state,
+        [action.payload]: [],
       };
     default: {
       return state;

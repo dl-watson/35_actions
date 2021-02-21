@@ -5,12 +5,14 @@ import styles from "./styles/Post.css";
 import deleteIcon from "/public/img/delete.png";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { deletePostComments } from "../../actions/commentActions";
 
 const Post = ({ id, title, body, postIndex }) => {
   const dispatch = useDispatch();
 
   const handleDelete = () => {
     dispatch(deletePost(id));
+    dispatch(deletePostComments(postIndex));
   };
 
   return (
