@@ -12,7 +12,7 @@ const NewPostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(createPost({ id: Date.now(), title, body, postcomments: [] }));
+    dispatch(createPost({ id: Date.now(), title, body }));
   };
 
   return (

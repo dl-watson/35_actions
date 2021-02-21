@@ -1,36 +1,39 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { getComments } from "../../selectors/commentSelectors";
-import { useDispatch, useSelector } from "react-redux";
 import uuid from "react-uuid";
-import { deleteComment } from "../../actions/commentActions";
+import { getComments } from "../../selectors/commentSelectors";
+import { useSelector } from "react-redux";
+import { Comment } from "./Comment";
+import { getPosts } from "../../selectors/postSelectors";
 
-const CommentList = ({ postId }) => {
-  const dispatch = useDispatch();
-  const { comments } = useSelector(getComments);
-  console.log("comments in comment list", comments);
+const CommentList = ({ postIndex }) => {
+  const comments = useSelector(getComments);
+  const posts = useSelector(getPosts);
 
-  const handleDelete = (e) => {
-    const { id } = e.target;
-    dispatch(deleteComment({ id, postId }));
-  };
+  const post = posts.posts[postIndex];
+  const commentList = comments?.[postIndex] || [];
 
-  const commentList = comments.map((comment) => {
+  const commentElements = commentList.map((comment, i) => {
     return (
-      <li key={comment[postId].id}>
-        <div>{comment[postId].text}</div>
-        <button onClick={handleDelete} id={comment[postId].id}>
-          Delete
-        </button>
+      <li key={uuid()}>
+        <Comment comment={comment} commentIndex={i} postIndex={postIndex} />
       </li>
     );
   });
 
-  return <>{commentList}</>;
+  return (
+    <>
+      <div>
+        <h2>{post.title}</h2>
+        <p>{post.body}</p>
+      </div>
+      <ul>{commentElements}</ul>
+    </>
+  );
 };
 
 CommentList.propTypes = {
-  postId: PropTypes.number.isRequired,
+  postIndex: PropTypes.number.isRequired,
 };
 
 export default CommentList;

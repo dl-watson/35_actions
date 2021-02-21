@@ -5,12 +5,11 @@ import Post from "./Post";
 
 const PostList = () => {
   const { posts } = useSelector(getPosts);
-  console.log("posts in post list", posts);
 
-  const list = posts.map((post) => {
+  const list = posts.map((post, i) => {
     return (
       <li key={post.id}>
-        <Post {...post} />
+        <Post {...post} postIndex={i} />
       </li>
     );
   });

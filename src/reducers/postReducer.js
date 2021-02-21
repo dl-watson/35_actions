@@ -1,5 +1,4 @@
-import { CREATE_COMMENT } from "../actions/commentActions";
-import { CREATE_POST, DELETE_POST, UPDATE_POST } from "../actions/postActions";
+import { CREATE_POST, DELETE_POST } from "../actions/postActions";
 
 export const initialState = {
   posts: [],
