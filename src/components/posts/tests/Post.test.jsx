@@ -1,15 +1,19 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import Post from "../Post";
-import { PostProvider } from "../../../providers/PostProvider";
+import { Provider } from "react-redux";
+import { store } from "../../../store";
+import { MemoryRouter as Router } from "react-router-dom";
 
 describe("Post component", () => {
   afterEach(() => cleanup());
   it("renders Post", () => {
     const { asFragment } = render(
-      <PostProvider>
-        <Post posts={{ id: Date.now(), title: "", body: "" }} />
-      </PostProvider>
+      <Provider store={store}>
+        <Router>
+          <Post posts={{ id: Date.now(), title: "", body: "" }} />
+        </Router>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
   });

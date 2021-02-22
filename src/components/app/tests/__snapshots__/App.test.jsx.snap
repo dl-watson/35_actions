@@ -2,29 +2,31 @@
 
 exports[`App component renders App 1`] = `
 <DocumentFragment>
-  <section
-    class="NewPostForm"
-  >
-    <h2>
-      Create Post
-    </h2>
-    <form>
-      <input
-        name="title"
-        placeholder="Title..."
-        value=""
-      />
-      <textarea
-        name="body"
-        placeholder="Body..."
-      />
-      <button>
-        Submit
-      </button>
-    </form>
-  </section>
-  <ul
-    data-testid="post-container"
-  />
+  <div>
+    <section
+      class="NewPostForm"
+    >
+      <h2>
+        Create Post
+      </h2>
+      <form>
+        <input
+          name="title"
+          placeholder="Title..."
+          value=""
+        />
+        <textarea
+          name="body"
+          placeholder="Body..."
+        />
+        <button>
+          Submit
+        </button>
+      </form>
+    </section>
+    <ul
+      data-testid="post-container"
+    />
+  </div>
 </DocumentFragment>
 `;
