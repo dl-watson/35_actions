@@ -9,12 +9,16 @@ exports[`Post component renders Post 1`] = `
       data-testid="delete-icon"
       src="/path/image"
     />
-    <section>
-      <h2
-        data-testid="title"
-      />
-      <p />
-    </section>
+    <a
+      href="/undefined"
+    >
+      <section>
+        <h2
+          data-testid="title"
+        />
+        <p />
+      </section>
+    </a>
   </div>
 </DocumentFragment>
 `;

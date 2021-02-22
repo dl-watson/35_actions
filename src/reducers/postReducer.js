@@ -4,7 +4,7 @@ export const initialState = {
   posts: [],
 };
 
-export const postReducer = (state, action) => {
+export const postReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_POST:
       return {

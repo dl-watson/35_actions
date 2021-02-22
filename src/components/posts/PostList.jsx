@@ -1,15 +1,15 @@
 import React from "react";
-import { useSelector } from "../../providers/PostProvider";
+import { useSelector } from "react-redux";
 import { getPosts } from "../../selectors/postSelectors";
 import Post from "./Post";
 
 const PostList = () => {
-  const posts = useSelector(getPosts);
+  const { posts } = useSelector(getPosts);
 
-  const list = posts.map((post) => {
+  const list = posts.map((post, i) => {
     return (
       <li key={post.id}>
-        <Post {...post} />
+        <Post {...post} postIndex={i} />
       </li>
     );
   });

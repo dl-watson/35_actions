@@ -1,13 +1,16 @@
 import React from "react";
-import NewPostForm from "../form/NewPostForm";
-import PostList from "../posts/PostList";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Comments } from "../comments/Comments";
+import { Posts } from "../posts/Posts";
 
 const App = () => {
   return (
-    <>
-      <NewPostForm />
-      <PostList />
-    </>
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Posts} />
+        <Route path="/:index" component={Comments} />
+      </Switch>
+    </Router>
   );
 };
 

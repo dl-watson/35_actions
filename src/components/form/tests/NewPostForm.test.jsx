@@ -1,15 +1,16 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react";
 import NewPostForm from "../NewPostForm";
-import { PostProvider } from "../../../providers/PostProvider";
+import { Provider } from "react-redux";
+import { store } from "../../../store";
 
 describe("NewPostForm component", () => {
   afterEach(() => cleanup());
   it("renders NewPostForm", () => {
     const { asFragment } = render(
-      <PostProvider>
+      <Provider store={store}>
         <NewPostForm />
-      </PostProvider>
+      </Provider>
     );
     expect(asFragment()).toMatchSnapshot();
   });
