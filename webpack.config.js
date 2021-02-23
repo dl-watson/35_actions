@@ -1,33 +1,33 @@
-const HtmlPlugin = require('html-webpack-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
-const CopyPlugin = require('copy-webpack-plugin');
+const HtmlPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
+const CopyPlugin = require("copy-webpack-plugin");
+const path = require("path");
 
 // eslint-disable-next-line
 module.exports = {
-  entry: './src/index.js',
+  entry: "./src/index.ts",
+  devtool: "inline-source-map",
   output: {
-    filename: 'bundle.[hash].js',
-    publicPath: '/'
+    filename: "bundle.[fullhash].js",
+    publicPath: "/",
   },
   devServer: {
     port: 7891,
-    historyApiFallback: true
+    historyApiFallback: true,
   },
   plugins: [
-    new HtmlPlugin({ template: './src/index.html' }),
+    new HtmlPlugin({ template: "./src/index.html" }),
     new CleanWebpackPlugin(),
     new Dotenv({
-      systemvars: true
+      systemvars: true,
     }),
     new CopyPlugin({
-      patterns: [
-        { from: 'public' },
-      ]
-    })
+      patterns: [{ from: "public" }],
+    }),
   ],
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: [".tsx", ".ts", ".js", ".jsx"],
   },
   module: {
     rules: [
@@ -35,49 +35,73 @@ module.exports = {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: {
-          loader: 'babel-loader',
+          loader: "babel-loader",
           options: {
-            cacheDirectory: true
-          }
-        }
+            cacheDirectory: true,
+          },
+        },
+      },
+      {
+        test: /\.tsx?$/,
+        use: "babel-loader",
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.js$/,
+        use: ["source-map-loader"],
+        enforce: "pre",
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: 'style-loader'
+            loader: "style-loader",
           },
           {
-            loader: 'css-loader',
+            loader: "css-loader",
             options: {
               sourceMap: true,
               modules: true,
-              importLoaders: 1
-            }
+              importLoaders: 1,
+            },
           },
           {
-            loader: 'postcss-loader',
+            loader: "postcss-loader",
             options: {
               sourceMap: true,
               postcssOptions: {
                 plugins: [
-                  require('postcss-import')(),
-                  require('autoprefixer')(),
-                  require('postcss-nested')(),
-                  require('postcss-simple-vars')()
-                ]
-              }
-            }
-          }
-        ]
+                  require("postcss-import")(),
+                  require("autoprefixer")(),
+                  require("postcss-nested")(),
+                  require("postcss-simple-vars")(),
+                ],
+              },
+            },
+          },
+        ],
+      },
+      {
+        test: /\.css$/,
+        include: path.join(__dirname, "src/components"),
+        use: [
+          "style-loader",
+          {
+            loader: "typings-for-css-modules-loader",
+            options: {
+              modules: true,
+              namedExport: true,
+            },
+          },
+        ],
       },
       {
         test: /\.(jpeg|jpg|png|svg)$/,
         use: {
-          loader: 'url-loader',
+          loader: "url-loader",
           options: { limit: 1000 },
         },
-      }
-    ]
-  }
+      },
+    ],
+  },
 };

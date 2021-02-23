@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+/* eslint-disable no-unused-vars */
+import React, { MouseEvent, useState } from "react";
 import { useDispatch } from "react-redux";
 import { createPost } from "../../actions/postActions";
-import styles from "./styles/NewPostForm.css";
+import * as styles from "./styles/NewPostForm.css";
 
 const NewPostForm = () => {
   const dispatch = useDispatch();
@@ -9,14 +10,14 @@ const NewPostForm = () => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event: MouseEvent) => {
+    event.preventDefault();
 
     dispatch(createPost({ id: Date.now(), title, body }));
   };
 
   return (
-    <section className={styles.NewPostForm} onSubmit={handleSubmit}>
+    <section className={styles.NewPostForm} onSubmit={(event) => handleSubmit}>
       <h2>Create Post</h2>
       <form>
         <input
